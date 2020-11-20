@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J17CssControl.html</title>
+    <script>
+        //전역변수 : 기사부분의 폰트 사이즈를 저장
+        var pTag, pSize;
+
+        window.onload = function(){
+            pTag = document.getElementById("article");
+            //폰트사이즈 변경을 위해 숫자로 변경한다.
+            pSize = parseInt(pTag.style.fontSize);//
+        }
+
+        function fnArticle(flag){
+            /*
+            JS에서 CSS 속성 컨트롤
+                : DOM.style.CSS속성 = "속성값";
+                단, 이때 CSS속성에 하이픈이 들어간다면, 제거 후 첫글자를
+                대문자로 변경한다. 또한 크기를 부여할때는 반드시 px과 같은
+                단위를 기술해야한다.
+            */
+            switch(flag){
+                case "+":
+                pSize += 10;
+                pTag.style.fontSize = pSize+"px";
+                break;
+                case "-":
+                pSize -= 10;
+                pTag.style.fontSize = pSize+"px";
+                break;
+                case "R":
+                pTag.style.color = "red";
+                break;
+                case "G":
+                pTag.style.color = "green";
+                break;
+                case "B":
+                pTag.style.color = "blue";
+                break;
+                case "Bo":
+                pTag.style.fontWeight = "bold";
+                break;
+                case "No":
+                pTag.style.fontWeight = "normal";
+                break;
+                case "Ce":
+                pTag.style.textAlign = "center";
+                break;
+                case "Le":
+                pTag.style.textAlign = "left";
+                break;
+                default:
+                pTag.style.color = "black";
+            }
+        }
+
+        var fontToggle = 0;//폰트 토글을 위한 전역변수
+        function setFont(){
+        //문제에서 주어진 폰트를 배열로 선언
+        var fontArray = ['Verdana', '굴림체', '휴먼옛체', '궁서', 'Impact'];
+        //정수를 5로 나누면 나머지는 0~4까지 생성됨
+        var fontIndex = fontToggle % 5;
+        //위에서 구한 수를 인덱스로 사용하여 폰트를 설정
+        pTag.style.fontFamily = fontArray[fontIndex];
+        //함수를 호출할 때 마다 전역변수 증가
+        fontToggle ++;
+         
+	}
+
+    </script>
+</head>
+<body>
+    <h2>자바스크립트로 CSS 제어하기</h2>
+    <input type="button" value="글꼴바꾸기" onclick="setFont();">
+    <fieldset>
+        <legend>신문기사</legend>
+            <button onclick="fnArticle('+');">+</button>
+            <button onclick="fnArticle('-');">-</button>
+            <button onclick="fnArticle('R');">Red</button>
+            <button onclick="fnArticle('G');">Green</button>
+            <button onclick="fnArticle('B');">Blue</button>
+            <button onclick="fnArticle('');">Black</button>
+            <button onclick="fnArticle('Bo');">볼드체</button>
+            <button onclick="fnArticle('No');">보통체</button>
+            <button onclick="fnArticle('Ce');">가운데정렬</button>
+            <button onclick="fnArticle('Le');">좌측정렬</button>         
+    </fieldset>
+    <p style="font-size:12px;" id="article">
+        오늘의 뉴스 <br>
+        (서울=뉴스1) 임성일 기자 = 우여곡절 끝에 카타르와의 경기를 치르게 된 파울루 벤투 축구대표팀 감독이 출사표를 전했다. 현재 상황에서 가용 가능한 최상의 스쿼드로 임해 좋은 결과를 가져오겠다는 각오다.
+
+            벤투 감독이 이끄는 축구대표팀이 오는 17일 오후 10시(이하 한국시간) 오스트리아 마리아 엔처스도르프의 BSFZ 아레나에서 카타르와 평가전을 갖는다. 지난 15일 멕시코와의 경기에서 2-3으로 패한 벤투호가 오스트리아에서 두 번째로 치르는 일정이자 2020년 마지막 공식전이다.
+            
+            멕시코전을 앞두고 실시한 신종 코로나바이러스 감염증(코로나19) 검사에서 총 6명의 양성 반응자가 발생해 안팎의 우려를 낳았던 대표팀은 다행히 지난 16일 실시한 3차 검사에서 추가 확진자가 나오지 않아 계획대로 카타르와 경기를 진행할 수 있게 됐다.
+            
+            여러모로 어수선한 상황이지만 그래도 어렵사리 성사된 경기인 만큼 최상의 결과를 얻기 위해 최선의 노력을 다한다는 각오다.
+            
+            벤투 감독은 "일단 선수들의 회복에 주안점을 뒀다. 멕시코전 이후 선수들이 잘 회복할 수 있게끔 배려했다"면서 컨디션 조절에 신경을 썼다는 뜻을 밝혔다.
+            
+            이어 "멕시코전에서는 상대가 우리 생각보다 더 강하게 몰아붙였고 때문에 평상시 보다 더 내려 서서 수비한 경향이 있었다"면서 "카타르와의 경기는 다른 모습을 보일 수 있도록 최선을 다할 것"이라고 전했다.
+            
+            앞선 멕시코전 패배를 씻기 위해서도, 2020년 마지막 A매치라는 측면에서도 카타르전은 내용 이상 결과도 중요하다.
+            
+            벤트 감독은 "카타르와의 경기는 반드시 공격적으로 임할 것"이라고 잘라 말한 뒤 "멕시코전과는 다른 형태의 경기가 될 것이다. 지난 경기 때 부족했던 모습을 보완해 반드시 승리를 거둘 수 있도록 준비할 것"이라고 전의를 불태웠다.
+            
+            한편, 벤투 감독은 모리뉴 토트넘 감독이 A매치 기간 선수들의 휴식을 에둘러 요구했던 것과 관련해 자신의 소신을 또렷하게 밝혔다. 대표팀 감독으로서 클럽 감독들에게 별도로 배려를 바라지 않는 것처럼, 클럽 감독들 역시 그래야한다는 강한 어조였다.
+            
+            벤투 감독은 "이번에는 선수들을 꾸리는 데 여러 어려움이 있었다. 일본과 중국에서 뛰는 선수들은 클럽들의 차출 거부로 함께 하지 못했다"면서 "가용할 수 있는 최상의 스쿼드로 경기를 치르는 것이 중요하다. 그렇게 해야지만 좋은 경기력으로 보답을 할 수 있다"고 전제했다.
+            
+            이어 "손흥민을 포함해 특정 선수의 출전 계획은 말할 수 없다. 경기를 앞두고 최선을 다해 준비해야한다는 것 뿐"이라면서 "나도 대표팀 감독과 클럽팀 감독을 다 경험했다. 대표팀 감독 입장에서 클럽을 향해 "우리 대표선수의 어떤 것을 고려해달라'고 말하지 않는다. 마찬가지로 선수들이 대표팀에 있을 때만큼은 대표팀의 일원으로 최선을 다하는 것이 좋다고 생각한다"고 견해를 피력했다.</legend>
+    
+    </p>
+</body>
+</html>
